@@ -1,150 +1,105 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroGlobe from "@/assets/hero-globe.jpg";
+import heroStill from "@/assets/hero-still.jpg";
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
+import project4 from "@/assets/project-4.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Priyanshu Kalondia — Data Analyst Portfolio" },
-      { name: "description", content: "B.Tech IT student turning data into decisions with SQL, Python, and Power BI. Explore projects, experience and skills." },
+      { title: "Priyanshu Kalondia — Data Analyst" },
+      { name: "description", content: "Editorial portfolio of Priyanshu Kalondia. Data analyst working with SQL, Python and Power BI to turn numbers into stories." },
       { property: "og:title", content: "Priyanshu Kalondia — Data Analyst" },
-      { property: "og:description", content: "SQL · Python · Power BI · Data Storytelling" },
+      { property: "og:description", content: "Data, design and storytelling." },
     ],
   }),
   component: Portfolio,
 });
 
 const NAV = [
-  { id: "home", label: "HOME" },
-  { id: "about", label: "ABOUT" },
-  { id: "stack", label: "STACK" },
-  { id: "projects", label: "PROJECTS" },
-  { id: "experience", label: "EXPERIENCE" },
-  { id: "awards", label: "AWARDS" },
-  { id: "contact", label: "CONTACT" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "contact", label: "Contact" },
 ];
-
-const STACK = {
-  "DATA & ANALYTICS": ["EDA", "Descriptive Stats", "RFM Segmentation", "Trend Analysis", "Data Cleaning"],
-  "LANGUAGES": ["Python", "SQL", "JavaScript", "TypeScript", "C++", "Java", "HTML", "CSS"],
-  "BI & VISUALIZATION": ["Power BI", "Tableau", "Matplotlib", "Seaborn", "Pandas", "NumPy", "Scikit-learn"],
-  "TOOLS": ["MySQL Workbench", "PostgreSQL", "Git", "GitHub", "Jupyter", "VS Code", "Postman", "Vercel"],
-  "DESIGN": ["Figma", "Canva", "Adobe", "Stitch"],
-};
 
 const PROJECTS = [
   {
-    icon: "📊",
+    no: "01",
     title: "E-Commerce Sales Dashboard",
-    stack: "Power BI · DAX · Power Query",
-    bullets: [
-      "Executive-ready Power BI dashboard tracking sales, profit, orders and customer KPIs.",
-      "Dynamic KPI cards, drill-through reports, slicers and complex DAX measures.",
-      "Analyzed trends by category, segment, region and time to surface growth opportunities.",
-    ],
+    year: "2024",
+    place: "Power BI · SQL",
+    image: project1,
+    blurb: "Interactive analytics across 32K+ rows of transactional data — revenue, customer cohorts and category performance unified into a single executive view.",
   },
   {
-    icon: "🛒",
+    no: "02",
     title: "RFM Customer Segmentation",
-    stack: "Python · Pandas · Cohort Analysis",
-    bullets: [
-      "Recency, Frequency, Monetary models segmenting customers from raw transactions.",
-      "Classified cohorts: Champions, Loyal, Potential Loyalists, At-Risk, Lost.",
-      "Evaluated CLV and revenue share to inform retention and targeted campaigns.",
-    ],
+    year: "2024",
+    place: "Python · Pandas",
+    image: project2,
+    blurb: "Behavioural segmentation of online retail customers using recency, frequency and monetary scoring to surface the most actionable cohorts for retention.",
   },
   {
-    icon: "🎵",
-    title: "Spotify Music Analysis",
-    stack: "MySQL · Python · Matplotlib · Seaborn",
-    bullets: [
-      "Analyzed 32,833 tracks for popularity, artist and genre trends.",
-      "Advanced SQL: CTEs, Views, Window & Aggregate Functions, CASE statements.",
-      "Insights on how danceability, energy and playlist exposure drive popularity.",
-    ],
+    no: "03",
+    title: "Spotify Listening Analysis",
+    year: "2024",
+    place: "Python · Seaborn",
+    image: project3,
+    blurb: "An exploration of audio features and streaming habits — what makes a track stick, and how mood maps onto tempo, energy and danceability.",
   },
   {
-    icon: "💼",
-    title: "LinkedIn Fresher Hiring Analysis",
-    stack: "Python · Pandas · NumPy · Matplotlib",
-    bullets: [
-      "EDA on tech fresher hiring datasets — salaries, roles, regional trends.",
-      "Mapped relationships between profiles, skills, certifications and pay.",
-      "Surfaced in-demand skills guiding entry-level job seekers.",
-    ],
+    no: "04",
+    title: "LinkedIn Fresher Job Market",
+    year: "2025",
+    place: "Web Scraping · Power BI",
+    image: project4,
+    blurb: "Scraped and analysed fresher job postings across India to map the demand for early-career data and tech roles by city, skill and company.",
   },
-];
-
-const STATS = [
-  { v: "4+", l: "PROJECTS" },
-  { v: "32K", l: "ROWS ANALYZED" },
-  { v: "5+", l: "BI DASHBOARDS" },
-  { v: "TOP 20%", l: "HACKWITHINDIA" },
 ];
 
 function Portfolio() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <div className="starfield pointer-events-none fixed inset-0 z-0" aria-hidden />
+    <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Stack />
-        <Projects />
-        <Experience />
-        <Awards />
-        <Contact />
-        <Footer />
-      </main>
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Contact />
+      <Footer />
     </div>
   );
 }
 
 function Nav() {
-  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    NAV.forEach((n) => {
-      const el = document.getElementById(n.id);
-      if (el) obs.observe(el);
-    });
-    return () => obs.disconnect();
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/60 backdrop-blur-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
-        <a href="#home" className="font-display text-sm font-bold tracking-[0.2em] text-neon">
-          PRIYANSHU<span className="text-foreground">.DATA</span>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-4 bg-cream/85 backdrop-blur-sm" : "py-8"}`}>
+      <div className="mx-auto flex max-w-[1600px] items-start justify-between px-6 md:px-12">
+        <a href="#top" className="leading-none">
+          <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">Priyanshu.</div>
+          <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ink/70">Data Analyst</div>
         </a>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden md:flex items-center gap-10 lg:gap-14 pt-2">
           {NAV.map((n) => (
             <a
               key={n.id}
               href={`#${n.id}`}
-              className={`relative px-3 py-1.5 font-mono text-[11px] tracking-[0.15em] transition-colors ${
-                active === n.id ? "text-neon" : "text-muted-foreground hover:text-foreground"
-              }`}
+              className="font-display italic text-lg text-ink hover:opacity-60 transition-opacity"
             >
               {n.label}
-              {active === n.id && (
-                <span className="absolute -bottom-0.5 left-3 right-3 h-px bg-neon shadow-[0_0_8px_var(--neon)]" />
-              )}
             </a>
           ))}
         </nav>
-        <a
-          href="mailto:priyanshukalondia@gmail.com"
-          className="rounded border border-neon px-3 py-1.5 font-mono text-[10px] tracking-[0.2em] text-neon transition-all hover:bg-neon hover:text-primary-foreground"
-        >
-          [ HIRE_ME ]
-        </a>
+        <div className="hidden md:block pt-2 text-sm tracking-wider text-ink/70">EN</div>
       </div>
     </header>
   );
@@ -152,149 +107,50 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center justify-center px-4 pt-24">
-      <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-neon/50 bg-neon/5 px-4 py-1.5">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-neon" />
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.25em] text-neon">SYSTEM_ONLINE</span>
-        </div>
-
-        <div className="relative mx-auto mb-6 h-64 w-64 md:h-80 md:w-80">
+    <section id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full max-w-[1600px] mx-auto px-6 md:px-12">
+        <div className="relative flex items-center justify-center" style={{ minHeight: "78vh" }}>
+          {/* Image centered behind type */}
           <img
-            src={heroGlobe}
-            alt=""
-            width={1024}
-            height={1024}
-            className="animate-float-slow absolute inset-0 h-full w-full object-contain opacity-90"
+            src={heroStill}
+            alt="Editorial still life"
+            width={520}
+            height={700}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[380px] lg:w-[440px] h-auto object-cover shadow-[0_30px_80px_-30px_rgba(80,20,20,0.35)]"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="font-display text-5xl font-black tracking-widest text-neon md:text-6xl" style={{ textShadow: "0 0 20px var(--neon), 0 0 40px var(--neon)" }}>
-              PK
-            </div>
-          </div>
+          {/* Giant serif name over image */}
+          <h1 className="relative z-10 font-display text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
+            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">Priyanshu.</span>
+            <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">data&nbsp;analyst</span>
+          </h1>
         </div>
-
-        <h1 className="font-display text-4xl font-black tracking-tight md:text-7xl">
-          PRIYANSHU <span className="text-neon">KALONDIA</span>
-        </h1>
-        <div className="mt-3 font-mono text-xs tracking-[0.3em] text-muted-foreground md:text-sm">
-          &gt; DATA_ANALYST · BI_DEVELOPER · UI/UX
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <span className="font-display italic text-ink/70 text-base">Scroll</span>
+          <div className="w-px h-10 bg-ink/30 animate-scroll-hint" />
         </div>
-
-        <div className="mx-auto mt-8 max-w-2xl rounded-lg border border-neon/30 bg-surface/60 p-4 text-left font-mono text-xs backdrop-blur md:text-sm">
-          <div className="mb-2 flex items-center gap-1.5 border-b border-border/40 pb-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-destructive/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-neon/80" />
-            <span className="ml-2 text-[10px] tracking-[0.2em] text-muted-foreground">
-              NEURAL_CORE // BIO.GENERATOR
-            </span>
-          </div>
-          <div className="text-foreground/90">
-            <span className="text-neon">&gt;</span> Turning raw data into{" "}
-            <span className="text-neon">executive-ready insights</span>.<br />
-            <span className="text-neon">&gt;</span> SQL pipelines, Python analysis, Power BI dashboards
-            <span className="animate-blink text-neon">_</span>
-          </div>
-        </div>
-
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.l} className="panel rounded-md p-3 text-center transition-all">
-              <div className="font-display text-xl font-bold text-neon md:text-2xl">{s.v}</div>
-              <div className="mt-1 font-mono text-[9px] tracking-[0.2em] text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="#projects" className="rounded border border-neon bg-neon/10 px-5 py-2.5 font-mono text-[11px] tracking-[0.2em] text-neon transition-all hover:bg-neon hover:text-primary-foreground glow-neon">
-            VIEW_MY_WORK
-          </a>
-          <a href="#contact" className="rounded border border-border px-5 py-2.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground transition-all hover:border-foreground hover:text-foreground">
-            CONTACT_ME
-          </a>
-        </div>
-
-        <div className="mt-12 font-mono text-[10px] tracking-[0.3em] text-muted-foreground">SCROLL ↓</div>
       </div>
     </section>
-  );
-}
-
-function SectionHeader({ tag, title }: { tag: string; title: string }) {
-  return (
-    <div className="mb-12 text-center">
-      <div className="mb-3 font-mono text-[10px] tracking-[0.35em] text-neon">[ {tag} ]</div>
-      <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">{title}</h2>
-      <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-neon to-transparent" />
-    </div>
   );
 }
 
 function About() {
   return (
-    <section id="about" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeader tag="ABOUT_ME" title="The Operator Behind the Data" />
-        <div className="panel rounded-lg p-8 md:p-10">
-          <p className="font-sans text-base leading-relaxed text-foreground/90 md:text-lg">
-            I'm an analytical and detail-oriented{" "}
-            <span className="text-neon">B.Tech Information Technology</span> student at GGSIPU (USICT),
-            specializing in transforming complex datasets into actionable business insights. I'm fluent in
-            <span className="text-neon"> SQL extraction</span>,{" "}
-            <span className="text-neon">Python data manipulation</span> (Pandas, NumPy), and building
-            interactive <span className="text-neon">Power BI dashboards</span>.
-          </p>
-          <p className="mt-4 font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
-            My edge? An advanced background in UI/UX — so dashboards I ship aren't just correct, they're
-            intuitive and executive-ready. I design data products people actually want to use.
-          </p>
-          <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border/40 pt-6 md:grid-cols-4">
-            {[
-              { l: "LOCATION", v: "Delhi, IN" },
-              { l: "DEGREE", v: "B.Tech IT" },
-              { l: "UNIVERSITY", v: "GGSIPU" },
-              { l: "STATUS", v: "Available" },
-            ].map((i) => (
-              <div key={i.l}>
-                <div className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground">{i.l}</div>
-                <div className="mt-1 font-display text-sm font-bold text-foreground">{i.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Stack() {
-  return (
-    <section id="stack" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeader tag="TECH_STACK" title="Tools of the Trade" />
-        <div className="grid gap-4 md:grid-cols-2">
-          {Object.entries(STACK).map(([cat, items]) => (
-            <div key={cat} className="panel rounded-lg p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-neon shadow-[0_0_8px_var(--neon)]" />
-                <h3 className="font-mono text-xs tracking-[0.25em] text-neon">{cat}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {items.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded border border-border bg-surface-2/60 px-2.5 py-1 font-mono text-[11px] text-foreground/80 transition-all hover:border-neon hover:text-neon"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
+    <section id="about" className="py-32 md:py-48 px-6 md:px-12">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="text-xs uppercase tracking-[0.4em] text-ink/60 mb-12">— About</div>
+        <p className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.15] text-ink font-light">
+          I'm <em className="italic">Priyanshu Kalondia</em>, a B.Tech Information Technology student in Delhi who turns messy datasets into clear, honest stories. I work across <em className="italic">SQL</em>, <em className="italic">Python</em> and <em className="italic">Power&nbsp;BI</em>, with a stubborn belief that good analysis should feel as composed as good design.
+        </p>
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-ink/15 pt-12">
+          {[
+            ["Based in", "Delhi, India"],
+            ["Studying", "B.Tech IT, GGSIPU"],
+            ["Focus", "Analytics & BI"],
+            ["Status", "Available 2026"],
+          ].map(([k, v]) => (
+            <div key={k}>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-ink/50 mb-3">{k}</div>
+              <div className="font-display text-xl md:text-2xl italic text-ink">{v}</div>
             </div>
           ))}
         </div>
@@ -305,31 +161,43 @@ function Stack() {
 
 function Projects() {
   return (
-    <section id="projects" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeader tag="DEPLOYED_PROJECTS" title="Featured Work" />
-        <div className="grid gap-5 md:grid-cols-2">
+    <section id="projects" className="py-32 md:py-48 px-6 md:px-12 bg-cream">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="flex items-end justify-between mb-20 md:mb-28">
+          <div>
+            <div className="text-xs uppercase tracking-[0.4em] text-ink/60 mb-6">— Selected work</div>
+            <h2 className="font-display text-6xl md:text-8xl text-ink leading-none">Projects.</h2>
+          </div>
+          <div className="hidden md:block font-display italic text-ink/60 text-lg">{PROJECTS.length} pieces</div>
+        </div>
+
+        <div className="space-y-32 md:space-y-48">
           {PROJECTS.map((p, i) => (
-            <article key={p.title} className="panel group relative overflow-hidden rounded-lg p-6 transition-all">
-              <div className="absolute right-4 top-4 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
-                #{String(i + 1).padStart(2, "0")}
+            <article key={p.no} className={`grid md:grid-cols-12 gap-8 md:gap-12 items-center ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}>
+              <div className="md:col-span-7">
+                <a href="#" className="block overflow-hidden group">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    width={1024}
+                    height={768}
+                    loading="lazy"
+                    className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+                  />
+                </a>
               </div>
-              <div className="mb-4 text-3xl">{p.icon}</div>
-              <h3 className="font-display text-xl font-bold text-foreground transition-colors group-hover:text-neon">
-                {p.title}
-              </h3>
-              <div className="mt-2 font-mono text-[11px] tracking-[0.1em] text-neon/80">{p.stack}</div>
-              <ul className="mt-4 space-y-2">
-                {p.bullets.map((b) => (
-                  <li key={b} className="flex gap-2 font-sans text-sm text-muted-foreground">
-                    <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-neon" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] text-neon opacity-60 transition-opacity group-hover:opacity-100">
-                <span>VIEW_REPO</span>
-                <span>→</span>
+              <div className="md:col-span-5 md:px-6">
+                <div className="flex items-baseline gap-4 mb-6 text-ink/60">
+                  <span className="font-mono text-xs">{p.no}</span>
+                  <span className="h-px flex-1 bg-ink/20" />
+                  <span className="font-display italic text-sm">{p.year}</span>
+                </div>
+                <h3 className="font-display text-4xl md:text-5xl text-ink leading-[1.05] mb-6">{p.title}</h3>
+                <div className="font-display italic text-ink/70 mb-6">{p.place}</div>
+                <p className="text-ink/80 leading-relaxed text-base md:text-lg max-w-md">{p.blurb}</p>
+                <a href="#" className="inline-block mt-8 font-display italic text-ink border-b border-ink/40 hover:border-ink pb-1 transition-colors">
+                  View case →
+                </a>
               </div>
             </article>
           ))}
@@ -340,68 +208,26 @@ function Projects() {
 }
 
 function Experience() {
-  return (
-    <section id="experience" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeader tag="WORK_LOG" title="Experience & Education" />
-        <div className="space-y-5">
-          <div className="panel rounded-lg p-6 md:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <div className="font-mono text-[10px] tracking-[0.2em] text-neon">FOUNDER · LEAD</div>
-                <h3 className="mt-1 font-display text-xl font-bold">Interface Specialist · INSANZIA LABS</h3>
-              </div>
-              <div className="rounded border border-border px-2.5 py-1 font-mono text-[10px] tracking-[0.15em] text-muted-foreground">
-                JAN 2026 — MAR 2026
-              </div>
-            </div>
-            <ul className="mt-4 space-y-2 font-sans text-sm text-muted-foreground">
-              <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon" />Coordinated end-to-end layouts, data architecture and frontend interfaces for web apps with clean state.</li>
-              <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon" />Translated raw client requirements into structured DB schemas and intuitive visual interfaces.</li>
-              <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon" />Integrated RESTful APIs and monitored user metrics with modern JavaScript standards.</li>
-            </ul>
-          </div>
-
-          <div className="panel rounded-lg p-6 md:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <div className="font-mono text-[10px] tracking-[0.2em] text-neon">EDUCATION</div>
-                <h3 className="mt-1 font-display text-xl font-bold">B.Tech, Information Technology</h3>
-                <div className="mt-1 font-sans text-sm text-muted-foreground">Guru Gobind Singh Indraprastha University · USICT, Delhi</div>
-              </div>
-              <div className="rounded border border-border px-2.5 py-1 font-mono text-[10px] tracking-[0.15em] text-muted-foreground">
-                2023 — 2027
-              </div>
-            </div>
-            <div className="mt-4 font-sans text-sm text-muted-foreground">
-              Relevant Curriculum: DBMS, Data Structures &amp; Algorithms, Applied Statistics, OOP, Collaborative Projects.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Awards() {
   const items = [
-    { tag: "TOP 20%", title: "BuildWithIndia — HackWithIndia", desc: "Top 5,000 of 25,000 teams in a national product-building competition. Grand finale at Google Office." },
-    { tag: "FINALIST", title: "Smart Delhi Ideathon 2025 · GGSIPU", desc: "Team Code Yodhas — engineered tech-driven data tracking prototypes for urban innovation." },
-    { tag: "SUBMITTED", title: "GDG Solution Challenge", desc: "AI-based data solution targeting UN Sustainable Development Goals." },
-    { tag: "COMPETED", title: "EDU Chain Regional Hackathon", desc: "Blockchain × educational technology — MSC-MSIT & HackQuest." },
+    { year: "2024 —", role: "Founder", org: "Insanzia Labs", note: "Building a small studio for data and design experiments." },
+    { year: "2023 — 2027", role: "B.Tech, Information Technology", org: "GGSIPU, Delhi", note: "Coursework in DBMS, statistics, machine learning and software engineering." },
+    { year: "2024", role: "Top 20%", org: "HackWithIndia Hackathon", note: "Recognised among the strongest data-driven submissions nationally." },
+    { year: "2024", role: "Finalist", org: "Multiple campus analytics competitions", note: "Built dashboards, pitched insights, presented to juries." },
   ];
   return (
-    <section id="awards" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeader tag="ACHIEVEMENTS" title="Hackathons & Recognitions" />
-        <div className="grid gap-4 md:grid-cols-2">
-          {items.map((a) => (
-            <div key={a.title} className="panel rounded-lg p-6">
-              <div className="mb-3 inline-block rounded border border-neon/50 bg-neon/5 px-2 py-0.5 font-mono text-[10px] tracking-[0.2em] text-neon">
-                {a.tag}
+    <section id="experience" className="py-32 md:py-48 px-6 md:px-12">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="text-xs uppercase tracking-[0.4em] text-ink/60 mb-12">— A short timeline</div>
+        <h2 className="font-display text-6xl md:text-8xl text-ink leading-none mb-20">Experience.</h2>
+        <div className="border-t border-ink/15">
+          {items.map((it) => (
+            <div key={it.role + it.year} className="grid md:grid-cols-12 gap-6 py-10 border-b border-ink/15 group">
+              <div className="md:col-span-2 font-mono text-sm text-ink/60 pt-2">{it.year}</div>
+              <div className="md:col-span-4">
+                <div className="font-display text-3xl md:text-4xl text-ink leading-tight">{it.role}</div>
+                <div className="font-display italic text-ink/60 mt-1">{it.org}</div>
               </div>
-              <h3 className="font-display text-base font-bold">{a.title}</h3>
-              <p className="mt-2 font-sans text-sm text-muted-foreground">{a.desc}</p>
+              <div className="md:col-span-6 text-ink/75 leading-relaxed md:pt-2">{it.note}</div>
             </div>
           ))}
         </div>
@@ -411,37 +237,25 @@ function Awards() {
 }
 
 function Contact() {
-  const links = [
-    { l: "EMAIL", v: "priyanshukalondia@gmail.com", href: "mailto:priyanshukalondia@gmail.com" },
-    { l: "PHONE", v: "+91 99717 47013", href: "tel:+919971747013" },
-    { l: "LINKEDIN", v: "/in/priyanshu-kalondia", href: "#" },
-    { l: "GITHUB", v: "@priyanshu-kalondia", href: "#" },
-  ];
   return (
-    <section id="contact" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-3xl text-center">
-        <SectionHeader tag="ESTABLISH_CONNECTION" title="Let's Build Something" />
-        <p className="mx-auto max-w-xl font-sans text-base text-muted-foreground">
-          Open to internships, freelance dashboards and collaborative data projects. Send a signal and I'll
-          respond within 24 hours.
-        </p>
+    <section id="contact" className="py-32 md:py-56 px-6 md:px-12 bg-cream">
+      <div className="mx-auto max-w-[1400px] text-center">
+        <div className="text-xs uppercase tracking-[0.4em] text-ink/60 mb-12">— Get in touch</div>
+        <h2 className="font-display text-[14vw] md:text-[10vw] leading-[0.9] text-ink">
+          <span className="italic">Let's</span> work<br />together.
+        </h2>
         <a
-          href="mailto:priyanshukalondia@gmail.com"
-          className="mt-8 inline-block rounded border border-neon bg-neon/10 px-8 py-3 font-mono text-xs tracking-[0.25em] text-neon transition-all hover:bg-neon hover:text-primary-foreground glow-neon"
+          href="mailto:priyanshu.kalondia@example.com"
+          className="inline-block mt-16 font-display italic text-2xl md:text-3xl text-ink border-b border-ink/40 hover:border-ink pb-2 transition-colors"
         >
-          [ SEND_TRANSMISSION ]
+          priyanshu.kalondia@example.com
         </a>
-
-        <div className="mt-12 grid gap-3 sm:grid-cols-2">
-          {links.map((l) => (
-            <a key={l.l} href={l.href} className="panel group flex items-center justify-between rounded-md p-4 text-left transition-all">
-              <div>
-                <div className="font-mono text-[10px] tracking-[0.25em] text-muted-foreground">{l.l}</div>
-                <div className="mt-1 font-mono text-sm text-foreground group-hover:text-neon">{l.v}</div>
-              </div>
-              <span className="font-mono text-neon opacity-50 transition-opacity group-hover:opacity-100">→</span>
-            </a>
-          ))}
+        <div className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-ink/70">
+          <a href="#" className="font-display italic text-lg hover:text-ink">LinkedIn</a>
+          <span className="h-1 w-1 rounded-full bg-ink/30" />
+          <a href="#" className="font-display italic text-lg hover:text-ink">GitHub</a>
+          <span className="h-1 w-1 rounded-full bg-ink/30" />
+          <a href="#" className="font-display italic text-lg hover:text-ink">Resume</a>
         </div>
       </div>
     </section>
@@ -450,13 +264,10 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border/40 px-4 py-8">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
-        <div>© 2026 PRIYANSHU.KALONDIA // ALL_SYSTEMS_OPERATIONAL</div>
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-neon" />
-          <span>BUILT_WITH_CURIOSITY</span>
-        </div>
+    <footer className="px-6 md:px-12 py-10 border-t border-ink/15">
+      <div className="mx-auto max-w-[1600px] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ink/60 tracking-wider">
+        <div>© {new Date().getFullYear()} Priyanshu Kalondia. All rights reserved.</div>
+        <div className="font-display italic">Made with care, in Delhi.</div>
       </div>
     </footer>
   );
