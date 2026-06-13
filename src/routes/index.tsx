@@ -119,9 +119,9 @@ function Hero() {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[380px] lg:w-[440px] h-auto object-cover shadow-[0_30px_80px_-30px_rgba(80,20,20,0.35)]"
           />
           {/* Giant serif name over image */}
-          <h1 className="relative z-10 font-display text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
-            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">PRIYANSHU.</span>
-            <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">Data Analyst and Data Engineer</span>
+          <h1 className="relative z-10 text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
+            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-hero font-bold">PRIYANSHU.</span>
+            <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-display font-light">Data Analyst and Data Engineer</span>
           </h1>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
