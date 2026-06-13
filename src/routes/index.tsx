@@ -86,7 +86,7 @@ function Nav() {
       <div className="mx-auto flex max-w-[1600px] items-start justify-between px-6 md:px-12">
         <a href="#top" className="leading-none">
           <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">Priyanshu.</div>
-          <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ink/70">Data Analyst</div>
+          <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ink/70">Data Analyst and Data Engineer</div>
         </a>
         <nav className="hidden md:flex items-center gap-10 lg:gap-14 pt-2">
           {NAV.map((n) => (
@@ -121,11 +121,11 @@ function Hero() {
           {/* Giant serif name over image */}
           <h1 className="relative z-10 font-display text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
             <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">Priyanshu.</span>
-            <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">data&nbsp;analyst</span>
+            <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">Data Analyst and Data Engineer</span>
           </h1>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="font-display italic text-ink/70 text-base">Scroll</span>
+          <span className="font-display italic text-ink/70 text-base">Know More</span>
           <div className="w-px h-10 bg-ink/30 animate-scroll-hint" />
         </div>
       </div>
@@ -209,7 +209,7 @@ function Projects() {
 
 function Experience() {
   const items = [
-    { year: "2024 —", role: "Founder", org: "Insanzia Labs", note: "Building a small studio for data and design experiments." },
+    { year: "2024 —", role: "Lead Designer", org: "Insanzia Labs", note: "Building a small studio for data and design experiments." },
     { year: "2023 — 2027", role: "B.Tech, Information Technology", org: "GGSIPU, Delhi", note: "Coursework in DBMS, statistics, machine learning and software engineering." },
     { year: "2024", role: "Top 20%", org: "HackWithIndia Hackathon", note: "Recognised among the strongest data-driven submissions nationally." },
     { year: "2024", role: "Finalist", org: "Multiple campus analytics competitions", note: "Built dashboards, pitched insights, presented to juries." },
