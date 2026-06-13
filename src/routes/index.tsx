@@ -210,7 +210,7 @@ function Projects() {
 function Experience() {
   const items = [
     { year: "2024 —", role: "Lead Designer", org: "Insanzia Labs", note: "Building a small studio for data and design experiments." },
-    { year: "2023 — 2027", role: "B.Tech, Information Technology", org: "GGSIPU, Delhi", note: "Coursework in DBMS, statistics, machine learning and software engineering." },
+    { year: "2023 — 2027", role: "B.Tech, Information Technology", org: "GGSIPU, Delhi", note: "Coursework in DBMS, statistics, machine learning, deep learning, OS and software engineering." },
     { year: "2024", role: "Top 20%", org: "HackWithIndia Hackathon", note: "Recognised among the strongest data-driven submissions nationally." },
     { year: "2024", role: "Finalist", org: "Multiple campus analytics competitions", note: "Built dashboards, pitched insights, presented to juries." },
   ];
