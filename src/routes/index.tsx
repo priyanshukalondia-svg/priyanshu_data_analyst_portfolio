@@ -138,7 +138,7 @@ function About() {
     <section id="about" className="py-32 md:py-48 px-6 md:px-12">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-xs uppercase tracking-[0.4em] text-ink/60 mb-12">— About</div>
-        <p className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.15] text-ink font-light">
+        <p className="font-display text-xl md:text-2xl lg:text-3xl leading-[1.4] text-ink font-light max-w-4xl">
           I'm <em className="italic">Priyanshu Kalondia</em>, a B.Tech Information Technology student in Delhi who turns messy datasets into clear, honest stories. I work across <em className="italic">SQL</em>, <em className="italic">Python</em> and <em className="italic">Power&nbsp;BI</em>, with a stubborn belief that good analysis should feel as composed as good design.
         </p>
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-ink/15 pt-12">
