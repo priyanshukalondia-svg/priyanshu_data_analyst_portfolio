@@ -120,7 +120,7 @@ function Hero() {
           />
           {/* Giant serif name over image */}
           <h1 className="relative z-10 font-display text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
-            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">Priyansh.</span>
+            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">PRIYANSHU.</span>
             <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">Data Analyst and Data Engineer</span>
           </h1>
         </div>
