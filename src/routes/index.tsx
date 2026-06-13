@@ -85,7 +85,7 @@ function Nav() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-4 bg-cream/85 backdrop-blur-sm" : "py-8"}`}>
       <div className="mx-auto flex max-w-[1600px] items-start justify-between px-6 md:px-12">
         <a href="#top" className="leading-none">
-          <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">PRIY</div>
+          <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">Priyanshu</div>
           <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ink/70">DATA ANALYST</div>
         </a>
         <nav className="hidden md:flex items-center gap-10 lg:gap-14 pt-2">
