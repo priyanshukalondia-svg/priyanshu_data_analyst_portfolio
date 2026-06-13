@@ -85,7 +85,7 @@ function Nav() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-4 bg-cream/85 backdrop-blur-sm" : "py-8"}`}>
       <div className="mx-auto flex max-w-[1600px] items-start justify-between px-6 md:px-12">
         <a href="#top" className="leading-none">
-          <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">Priyanshu.</div>
+          <div className="font-display text-2xl md:text-3xl italic tracking-tight text-ink">PRIYANSHU</div>
           <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ink/70">Data Analyst and Data Engineer</div>
         </a>
         <nav className="hidden md:flex items-center gap-10 lg:gap-14 pt-2">
@@ -120,7 +120,7 @@ function Hero() {
           />
           {/* Giant serif name over image */}
           <h1 className="relative z-10 font-display text-ink text-center leading-[0.85] tracking-[-0.03em] animate-fade-up">
-            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">Priyanshu.</span>
+            <span className="block text-[18vw] md:text-[15vw] lg:text-[13vw] font-medium">Priyansh.</span>
             <span className="block text-[6vw] md:text-[4vw] lg:text-[3vw] italic mt-2 md:mt-4 font-light">Data Analyst and Data Engineer</span>
           </h1>
         </div>
