@@ -114,8 +114,8 @@ function Hero() {
           <img
             src={heroStill}
             alt="Editorial still life"
-            width={520}
-            height={700}
+            width={960}
+            height={1280}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[380px] lg:w-[440px] h-auto object-cover shadow-[0_30px_80px_-30px_rgba(80,20,20,0.35)]"
           />
           {/* Giant serif name over image */}
